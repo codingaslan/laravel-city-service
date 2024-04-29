@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('posts', static function (Blueprint $table) {
             $table->id();
             $table-> string('title');
             $table->string('image');
             $table->text('content');
+            $table->foreignId('listing_id')->constrained('listings','id')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

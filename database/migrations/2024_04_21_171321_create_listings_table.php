@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
+            $table->string('cover')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->foreignId('user_id')->constrained('users','id')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

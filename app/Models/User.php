@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -34,6 +35,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'is_active',
+        'is_admin',
     ];
 
     /**
@@ -49,4 +52,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'user_id', 'id');
+    }
+
+    public function listings(): HasMany
+    {
+        return $this->hasMany(Listing::class, 'user-id', 'id');
+    }
+
 }
