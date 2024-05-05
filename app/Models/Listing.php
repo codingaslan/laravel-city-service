@@ -25,7 +25,7 @@ class Listing extends Model
         'website',
     ];
 
-    protected static $marks = [
+    protected static array $marks = [
         Like::class,
         Favorite::class,
     ];
