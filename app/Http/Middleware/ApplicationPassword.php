@@ -15,11 +15,12 @@ class ApplicationPassword
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!isset($request->app_passwprd) || $request->app_passwprd !== config('application_password', 'DEFAULT_PASSWORD')) {
+        if (!isset($request->app_password) || $request->app_password !== config('app.application_password', 'DEFAULT_PASSWORD')) {
+            //dd($request);
             return \response()->json([
                 'status' => false,
                 'code' => 'E000',
-                'msg' => 'Unauthenticated. '
+                'msg' => 'Unauthenticated. 1',
             ]);
         }
         return $next($request);

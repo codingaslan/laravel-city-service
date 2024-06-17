@@ -14,7 +14,7 @@ Route::middleware(['auth:sanctum', 'abilities:user'])->prefix('user')->group(sta
     require  __DIR__ ."/Api/user.php";
 });
 // Visitor Route Group
-Route::middleware(['auth:sanctum', 'abilities:visitor'])->prefix('visitor')->group(static function () {
+Route::prefix('visitor')->group(static function () {
     require  __DIR__ ."/Api/guest.php";
 });
 
